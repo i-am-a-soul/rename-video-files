@@ -25,6 +25,7 @@
     "dist/"
   ],
   "dependencies": {
+    "@douyinfe/semi-theme-default": "^2.47.0",
     "@douyinfe/semi-ui": "^2.46.0",
     "@modern-js/runtime": "2.39.2",
     "normalize.css": "^8.0.1",

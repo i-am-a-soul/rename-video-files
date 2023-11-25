@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@douyinfe/semi-theme-default':
+    specifier: ^2.47.0
+    version: 2.47.0
   '@douyinfe/semi-ui':
     specifier: ^2.46.0
     version: 2.46.0(react-dom@18.2.0)(react@18.2.0)
@@ -1576,6 +1579,12 @@ packages:
 
   /@douyinfe/semi-theme-default@2.46.0:
     resolution: {integrity: sha512-obdOVmlcmJ5HV2BAd6yZei9q2QKIk/JtOq40p8ED9Swk7W11z1t4+DLNXCaIWIKNnQ8CX0eoYm5Chvk7jvbzeg==}
+    dependencies:
+      glob: 7.2.3
+    dev: false
+
+  /@douyinfe/semi-theme-default@2.47.0:
+    resolution: {integrity: sha512-nfDkp3b7yIKVuykelMQ4UykjqPF7OxpoRrehD713o0Wykk/FcR76janeXTgZiwDZgSY0Yb7kk6yr6CeWH/o/Uw==}
     dependencies:
       glob: 7.2.3
     dev: false
