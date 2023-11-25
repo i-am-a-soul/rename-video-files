@@ -1,3 +1,9 @@
-.app {
-    color: red;
+@import '~@douyinfe/semi-theme-default/scss/variables.scss';
+
+.pageWrapper {
+  padding: $spacing-base;
+}
+
+.page {
+  width: 100%;
 }

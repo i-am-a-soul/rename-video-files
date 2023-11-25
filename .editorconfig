@@ -1,0 +1,36 @@
+# 表示当前文件适用的配置
+root = true
+
+# 全局配置
+[*]
+indent_style = space
+indent_size = 2
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# JavaScript 配置
+[*.js]
+indent_style = space
+indent_size = 2
+
+# TypeScript 配置
+[*.ts]
+indent_style = space
+indent_size = 2
+
+# CSS, SCSS 配置
+[*.{css,scss}]
+indent_style = space
+indent_size = 2
+
+# HTML, XML 配置
+[*.{html,xml}]
+indent_style = space
+indent_size = 2
+
+# Markdown 配置
+[*.md]
+indent_style = space
+indent_size = 2

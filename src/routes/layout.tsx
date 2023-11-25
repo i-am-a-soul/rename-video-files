@@ -1,5 +1,6 @@
 import { Helmet } from '@modern-js/runtime/head';
 import { Outlet } from '@modern-js/runtime/router';
+import Style from './index.module.scss';
 import 'normalize.css';
 import { Header } from './__header';
 
@@ -14,7 +15,9 @@ export default function Layout() {
         />
       </Helmet>
       <Header />
-      <Outlet />
+      <main className={Style.pageWrapper}>
+        <Outlet />
+      </main>
     </>
   );
 }
