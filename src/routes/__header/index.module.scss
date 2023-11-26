@@ -10,4 +10,5 @@ $headerHeight: 60px;
   padding: 0 $spacing-base;
   height: $headerHeight;
   background-color: rgba(var(--semi-violet-2), 1);
+  border-bottom: 1px solid rgba(var(--semi-violet-3), 1);
 }
