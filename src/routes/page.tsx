@@ -25,6 +25,7 @@ const Index: FC = () => {
         accept="video/*"
         multiple
         draggable
+        uploadTrigger="custom"
         dragMainText={'点击上传或拖拽上传'}
         dragSubText="仅支持视频文件"
         onFileChange={handleFileChange}
