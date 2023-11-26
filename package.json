@@ -4,7 +4,7 @@
   "scripts": {
     "reset": "npx rimraf ./**/node_modules",
     "dev": "modern dev",
-    "build": "modern build",
+    "build": "modern build && mv ./dist/html/main/index.html ./dist/index.html && npx rimraf ./dist/html",
     "start": "modern start",
     "serve": "modern serve",
     "new": "modern new",
