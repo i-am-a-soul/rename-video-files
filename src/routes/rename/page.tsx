@@ -1,60 +1,55 @@
 import { FC, useRef, useEffect, useState } from 'react';
 import { useModel } from '@modern-js/runtime/model';
+import { useNavigate } from '@modern-js/runtime/router';
 import { Input, Space, Typography } from '@douyinfe/semi-ui';
 import Style from './index.module.scss';
 import fileListModel from '@/models/file-list';
+import { downloadFile } from '@/utils';
 
 const Index: FC = () => {
+  const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [curFileIndex, setCurFileIndex] = useState(0);
-  const [inputValue, setInputValue] = useState('');
   const [{ fileList }] = useModel(fileListModel);
+  const [curFileIndex, setCurFileIndex] = useState(0);
+  const [newFileName, setNewFileName] = useState('');
+
+  useEffect(() => {
+    if (fileList.length === 0) {
+      navigate('/');
+    }
+  }, []);
 
   useEffect(() => {
     playVideo(curFileIndex);
-  }, []);
+  }, [curFileIndex]);
 
   const playVideo = (fileIndex: number) => {
     const file = fileList[fileIndex];
-    const fileReader = new FileReader();
-    fileReader.onload = (e: ProgressEvent<FileReader>) => {
-      if (e?.target?.result && videoRef.current) {
-        const blob = new Blob([e.target.result], { type: file.type });
-        videoRef.current.src = URL.createObjectURL(blob);
-      }
-    };
-    fileReader.readAsArrayBuffer(file);
+    if (videoRef.current) {
+      videoRef.current.src = URL.createObjectURL(file);
+    }
   };
 
   const handleConfirm = () => {
     const file = fileList[curFileIndex];
-    console.log('file.type', file.type);
-    const renamedFile = new File([file], inputValue, { type: file.type });
-    const blob = new Blob([renamedFile], { type: file.type });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = renamedFile.name;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    downloadFile(file, newFileName);
 
-    playVideo(curFileIndex + 1);
     setCurFileIndex(curFileIndex + 1);
-    setInputValue('');
+    setNewFileName('');
   };
 
   return (
     <Space className={Style.page} vertical>
-      <Typography.Title heading={2}>{`第 ${curFileIndex + 1} 个，共${
+      <Typography.Title heading={2}>{`第 ${curFileIndex + 1} 个（共 ${
         fileList.length
-      }个`}</Typography.Title>
+      } 个）`}</Typography.Title>
       <video ref={videoRef} controls className={Style.video}></video>
-      <Space className={Style.renameArea}>
-        <Typography.Text>新文件名：</Typography.Text>
+      <Space className={Style.renameArea} vertical align="start">
+        <Typography.Text>新文件名（按回车键确认）：</Typography.Text>
         <Input
           autoFocus
-          value={inputValue}
-          onChange={setInputValue}
+          value={newFileName}
+          onChange={setNewFileName}
           onEnterPress={handleConfirm}
         />
       </Space>
