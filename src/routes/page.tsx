@@ -4,13 +4,17 @@ import { useNavigate } from '@modern-js/runtime/router';
 import { useModel } from '@modern-js/runtime/model';
 import Style from './index.module.scss';
 import fileListModel from '@/models/file-list';
+import taskListModel from '@/models/task-list';
 
 const Index: FC = () => {
   const navigate = useNavigate();
   const [{ fileList }, { setFileList }] = useModel(fileListModel);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, { resetTaskList }] = useModel(taskListModel);
 
   useEffect(() => {
     setFileList([]);
+    resetTaskList();
   }, []);
 
   const handleFileChange = (fileList: File[]) => {

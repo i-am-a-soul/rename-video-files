@@ -4,20 +4,17 @@ import { useNavigate } from '@modern-js/runtime/router';
 import { Input, Space, Typography } from '@douyinfe/semi-ui';
 import Style from './index.module.scss';
 import fileListModel from '@/models/file-list';
+import taskListModel from '@/models/task-list';
 import { downloadFile } from '@/utils';
 
 const Index: FC = () => {
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [{ fileList }] = useModel(fileListModel);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, { addTask }] = useModel(taskListModel);
   const [curFileIndex, setCurFileIndex] = useState(0);
   const [newFileName, setNewFileName] = useState('');
-
-  useEffect(() => {
-    if (fileList.length === 0) {
-      navigate('/');
-    }
-  }, []);
 
   useEffect(() => {
     playVideo(curFileIndex);
@@ -32,10 +29,15 @@ const Index: FC = () => {
 
   const handleConfirm = () => {
     const file = fileList[curFileIndex];
-    downloadFile(file, newFileName);
+    // 因为传 () => void 会被执行，所以这里要传 () => () => void
+    addTask(() => () => downloadFile(file, newFileName));
 
-    setCurFileIndex(curFileIndex + 1);
-    setNewFileName('');
+    if (curFileIndex === fileList.length - 1) {
+      navigate('/exe-rename');
+    } else {
+      setCurFileIndex(curFileIndex + 1);
+      setNewFileName('');
+    }
   };
 
   return (
