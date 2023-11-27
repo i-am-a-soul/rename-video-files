@@ -1,4 +1,5 @@
 import { model } from '@modern-js/runtime/model';
+import { sleep } from '@/utils';
 
 type State = {
   taskList: Array<() => void>;
@@ -16,7 +17,15 @@ export default model<State>('task-list').define({
       draft.taskList.push(payload);
     },
     executeAllTask: (draft: State) => {
-      draft.taskList.forEach(task => task());
+      const f = async (taskList: State['taskList']) => {
+        while (taskList.length > 0) {
+          const task = taskList.shift();
+          await sleep(1000);
+          task?.();
+        }
+      };
+
+      f([...draft.taskList]);
     },
   },
 });

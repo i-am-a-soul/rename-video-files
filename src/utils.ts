@@ -9,3 +9,8 @@ export const downloadFile = (file: File, fileName: string) => {
   aTag.click();
   document.body.removeChild(aTag);
 };
+
+export const sleep = async (ms: number) =>
+  new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });

@@ -28,6 +28,10 @@ const Index: FC = () => {
   };
 
   const handleConfirm = () => {
+    if (!newFileName) {
+      return;
+    }
+
     const file = fileList[curFileIndex];
     // 因为传 () => void 会被执行，所以这里要传 () => () => void
     addTask(() => () => downloadFile(file, newFileName));
