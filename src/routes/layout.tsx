@@ -11,8 +11,9 @@ export default function Layout() {
         <link
           rel="icon"
           type="image/x-icon"
-          href="https://lf3-static.bytednsdoc.com/obj/eden-cn/uhbfnupenuhf/favicon.ico"
+          href="https://lf9-static.semi.design/obj/semi-tos/images/favicon.ico"
         />
+        <title>视频文件批量重命名</title>
       </Helmet>
       <Header />
       <main className={Style.pageWrapper}>

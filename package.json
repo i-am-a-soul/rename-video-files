@@ -1,6 +1,6 @@
 {
   "name": "rename-video-files",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "scripts": {
     "reset": "npx rimraf ./**/node_modules",
     "dev": "modern dev",
@@ -25,6 +25,7 @@
     "dist/"
   ],
   "dependencies": {
+    "@douyinfe/semi-icons": "^2.47.0",
     "@douyinfe/semi-theme-default": "^2.47.0",
     "@douyinfe/semi-ui": "^2.46.0",
     "@modern-js/runtime": "2.39.2",
